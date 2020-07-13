@@ -2,13 +2,15 @@ class AlgoHashTable:
 
     def __init__(self, size):
         self.size = size
-        self.hash_table = [[] for _ in range(self.size)]
+        self.hash_table = self.create_buckets()
 
     def create_buckets(self):
-        pass
+        return [[] for _ in range(self.size)]
 
     def set_val(self, key, value):
-        pass
+        hashed_key = hash(key)%self.size
+        bucket = self.hash_table[hashed_key]
+        bucket.append((key, value))
 
     def get_val(self, key):
         pass
