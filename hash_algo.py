@@ -22,7 +22,18 @@ class AlgoHashTable:
             bucket.append((key, value)) # add new
 
     def get_val(self, key):
-        pass
+        hashed_key = 10 # hash(key)%self.size
+        bucket = self.hash_table[hashed_key]
+        found_key = False
+        for index, record in enumerate(bucket):
+            record_key, record_value = record
+            if record_key == key:
+                found_key = True
+                break
+        if found_key:
+            return record_value
+        else:
+            return "No record found"
 
     def __str__(self):
         return "".join(str(item) for item in self.hash_table)
@@ -33,3 +44,5 @@ hash_table.set_val('notchris@example.com','some other value')
 print(hash_table)
 hash_table.set_val('chris@example.com', 'I love Python')
 print(hash_table)
+print(hash_table.get_val('chris@example.com'))
+print(hash_table.get_val('somebody@example.com'))
