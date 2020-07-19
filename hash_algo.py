@@ -35,6 +35,20 @@ class AlgoHashTable:
         else:
             return "No record found"
 
+    def delete_record(self, key):
+        hashed_key = 10 # hash(key)%self.size
+        bucket = self.hash_table[hashed_key]
+        found_key = False
+        for index, record in enumerate(bucket):
+            record_key, record_value = record
+            if record_key == key:
+                found_key = True
+                break
+        if found_key:
+            bucket.remove((record))
+        else:
+            return "No record found"
+
     def __str__(self):
         return "".join(str(item) for item in self.hash_table)
 
@@ -42,7 +56,9 @@ hash_table = AlgoHashTable(256)
 hash_table.set_val('chris@example.com','some value')
 hash_table.set_val('notchris@example.com','some other value')
 print(hash_table)
-hash_table.set_val('chris@example.com', 'I love Python')
+#hash_table.set_val('chris@example.com', 'I love Python')
+#python3 hash_algo.pyprint(hash_table)
+#print(hash_table.get_val('chris@example.com'))
+#print(hash_table.get_val('somebody@example.com'))
+hash_table.delete_record('chris@example.com')
 print(hash_table)
-print(hash_table.get_val('chris@example.com'))
-print(hash_table.get_val('somebody@example.com'))
